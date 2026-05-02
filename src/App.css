@@ -1,0 +1,12 @@
+/* Clean up default App.css */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+}
+
+/* Component specific styles can be added here or in separate module files */

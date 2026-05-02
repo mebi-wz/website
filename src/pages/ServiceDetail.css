@@ -1,0 +1,174 @@
+.service-detail-page {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  font-family: var(--font-body);
+}
+
+.service-detail-container {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 5rem;
+  padding: 4rem 1rem;
+}
+
+@media (max-width: 900px) {
+  .service-detail-container {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+
+/* Sidebar Styles */
+.sd-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.sd-graphic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sd-odoo-placeholder {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, rgba(123, 176, 74, 0.08), rgba(20, 22, 35, 0.5));
+  border: 1px solid rgba(123, 176, 74, 0.2);
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-primary); 
+  font-family: var(--font-heading);
+  letter-spacing: 0.15em;
+  font-size: 3rem;
+  box-shadow: inset 0 0 50px rgba(123, 176, 74, 0.05), 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.sidebar-title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sd-text-block {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.text-highlight {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Main Content Styles */
+.sd-intro {
+  margin-bottom: 4rem;
+}
+
+.sd-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.sd-main-heading {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.sd-sub-heading {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+}
+
+.sd-paragraph {
+  font-size: 1.15rem;
+  line-height: 1.85;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+/* Custom Module List contents inside Accordion */
+.module-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.module-intro {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-weight: 400;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.module-list-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.why-erp-box {
+  background: var(--bg-card);
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  font-family: var(--font-body);
+}
+
+.module-list-item h4 {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.module-list-item p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.module-list-item ul {
+  padding-left: 1.2rem;
+  margin-bottom: 0;
+  list-style: disc;
+  color: var(--text-secondary);
+}
+
+.module-list-item ul li {
+  margin-bottom: 0.6rem;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
