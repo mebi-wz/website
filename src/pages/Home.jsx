@@ -4,6 +4,7 @@ import TQDTSection from '../components/TQDTSection'
 import Services from '../components/Services'
 import TechStack from '../components/TechStack'
 import Contact from '../components/Contact'
+import About from '../components/About'
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <TQDTSection />
       <Services />
       <TechStack />
+      <About />
       <Contact />
     </div>
   )
