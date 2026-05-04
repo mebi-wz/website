@@ -1,6 +1,6 @@
 .footer {
-  background-color: #0b0c10;
-  color: #fff;
+  background-color: var(--bg-darker);
+  color: var(--text-primary);
   padding-top: 3rem;
   position: relative;
   font-family: var(--font-body);
@@ -62,7 +62,7 @@
   grid-template-columns: 2fr 1fr 1fr;
   gap: 4rem;
   padding-bottom: 4rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .footer__brand {
@@ -83,7 +83,7 @@
 }
 
 .footer__tagline {
-  color: #8c95a6;
+  color: var(--text-secondary);
   line-height: 1.8;
   margin-bottom: 2rem;
   max-width: 400px;
@@ -101,22 +101,22 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--accent-secondary);
   border-radius: 8px;
-  color: #fff;
+  color: #ffffff;
   transition: all 0.3s ease;
 }
 
 .footer__socials a:hover {
   background: var(--accent-primary);
-  color: #0b0c10;
+  color: var(--bg-darker);
   transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(123, 176, 74, 0.3);
+  box-shadow: 0 10px 20px var(--glow-color);
 }
 
 /* Columns */
 .footer__col h4 {
-  color: #fff;
+  color: var(--text-primary);
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
@@ -133,7 +133,7 @@
 }
 
 .footer__col a, .footer__col span {
-  color: #8c95a6;
+  color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.3s ease;
   font-size: 0.95rem;
@@ -156,14 +156,15 @@
 /* Bottom Bar */
 .footer__bottom {
   padding: 2rem 0;
-  background: #060709;
+  background: var(--bg-darker);
+  border-top: 1px solid var(--border-color);
 }
 
 .footer__bottom-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #5d6778;
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
@@ -176,13 +177,13 @@
 }
 
 .footer__legal-links a {
-  color: #5d6778;
+  color: var(--text-secondary);
   text-decoration: none;
   transition: color 0.3s;
 }
 
 .footer__legal-links a:hover {
-  color: #fff;
+  color: var(--text-primary);
 }
 
 /* Responsive */
