@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/marsbewk/public_html/staging.marsbestech.com/
-    - /bin/cp -R build/* $DEPLOYPATH
+    - /bin/cp -R dist/* $DEPLOYPATH
