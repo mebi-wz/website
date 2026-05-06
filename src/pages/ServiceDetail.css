@@ -180,3 +180,12 @@
   line-height: 1.6;
   font-size: 0.95rem;
 }
+
+.module-purpose {
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  color: var(--accent-primary) !important;
+  font-style: italic;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
