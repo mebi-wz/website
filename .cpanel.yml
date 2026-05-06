@@ -1,6 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/marsbewk/public_html/app
+    - export DEPLOYPATH=/home/marsbewk/public_html/stagging.marsbestech.com/
     - /bin/mkdir -p $DEPLOYPATH
     - /bin/cp -R dist/* $DEPLOYPATH
