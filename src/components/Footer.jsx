@@ -61,7 +61,7 @@ const Footer = () => (
         <ul className="footer__contact-list">
           <li>
             <Mail size={16} className="footer__contact-icon" />
-            <a href="mailto:[EMAIL_ADDRESS]">[EMAIL_ADDRESS]</a>
+            <a href="mailto:info@marsbestech.com">info@marsbestech.com</a>
           </li>
           <li>
             <Phone size={16} className="footer__contact-icon" />
@@ -69,7 +69,7 @@ const Footer = () => (
           </li>
           <li>
             <MapPin size={16} className="footer__contact-icon" />
-            <span>Addis Ababa, Ethiopia</span>
+            <span>Airport Road, Addis Ababa, Ethiopia</span>
           </li>
         </ul>
       </div>
