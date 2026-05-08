@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import './Hero.css'
 
@@ -29,12 +29,12 @@ const Hero = () => {
           </p>
           
           <div className="hero__actions">
-            <a href="#contact" className="btn btn-primary hero__btn">
+            <Link to="/contact" className="btn btn-primary hero__btn">
               Get Free ERP Assessment <ArrowRight className="hero__btn-icon" size={18} />
-            </a>
-            <a href="#services" className="btn btn-outline hero__btn-outline">
+            </Link>
+            <Link to="/services" className="btn btn-outline hero__btn-outline">
               Explore Services
-            </a>
+            </Link>
           </div>
         </div>
 

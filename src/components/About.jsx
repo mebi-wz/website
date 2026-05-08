@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 import { ArrowRight, CheckCircle2, TrendingUp, Shield, Users } from 'lucide-react'
 import './About.css'
 
@@ -52,9 +52,9 @@ const About = () => {
             </li>
           </ul>
 
-          <a href="#contact" className="btn btn-primary about-btn">
+          <Link to="/contact" className="btn btn-primary about-btn">
             Work With Us <ArrowRight size={18} style={{ marginLeft: '0.5rem' }} />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

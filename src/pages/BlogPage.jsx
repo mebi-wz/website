@@ -103,7 +103,7 @@ const BlogPage = () => {
                   <span style={{ fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.4rem' }}><User size={14}/> {post.author}</span>
                   <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.3rem' }}><Calendar size={12}/> {post.date}</span>
                 </div>
-                <Link to="#" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '45px', height: '45px', borderRadius: '50%', backgroundColor: 'rgba(123, 176, 74, 0.1)', color: 'var(--accent-primary)', transition: 'all 0.3s ease' }} 
+                <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '45px', height: '45px', borderRadius: '50%', backgroundColor: 'rgba(123, 176, 74, 0.1)', color: 'var(--accent-primary)', transition: 'all 0.3s ease' }} 
                     onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'var(--accent-primary)'; e.currentTarget.style.color = '#fff'; }}
                     onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(123, 176, 74, 0.1)'; e.currentTarget.style.color = 'var(--accent-primary)'; }}
                 >
