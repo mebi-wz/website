@@ -2,6 +2,39 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Calendar, User, Tag, MessageSquare } from 'lucide-react'
 
+const fallbackPosts = [
+  {
+    id: 'f1',
+    title: 'AI in African Business: Beyond the Hype',
+    excerpt: 'Practical applications of Artificial Intelligence that are already generating ROI for local businesses today.',
+    category: 'Artificial Intelligence',
+    author: 'Marsbes Tech',
+    date: 'April 24, 2024',
+    readTime: '8 min read',
+    imageUrl: '/blog/ai.png'
+  },
+  {
+    id: 'f2',
+    title: 'The Future of ERPs in Ethiopian Enterprises',
+    excerpt: 'Discover how modern, cloud-based ERP systems are transforming the way businesses operate in East Africa.',
+    category: 'ERP Solutions',
+    author: 'Marsbes Tech',
+    date: 'May 1, 2024',
+    readTime: '5 min read',
+    imageUrl: '/blog/erp.png'
+  },
+  {
+    id: 'f3',
+    title: 'Scaling Modern Web Applications in 2024',
+    excerpt: 'A deep dive into the latest web technologies that are helping startups and enterprises scale their digital presence.',
+    category: 'Web Development',
+    author: 'Marsbes Tech',
+    date: 'June 10, 2024',
+    readTime: '10 min read',
+    imageUrl: '/blog/web.png'
+  }
+]
+
 const BlogPage = () => {
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
@@ -15,12 +48,12 @@ const BlogPage = () => {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/posts`)
         const data = await response.json()
         if (response.ok) {
-          setPosts(data)
+          setPosts(data.length > 0 ? data : fallbackPosts)
         } else {
-          setError(data.error)
+          setPosts(fallbackPosts)
         }
       } catch (err) {
-        setError('Failed to load posts')
+        setPosts(fallbackPosts)
       } finally {
         setLoading(false)
       }
@@ -28,6 +61,12 @@ const BlogPage = () => {
 
     fetchPosts()
   }, []);
+
+  const getImageUrl = (url) => {
+    if (!url) return null;
+    if (url.startsWith('http') || url.startsWith('/')) return url;
+    return `${import.meta.env.VITE_API_URL}${url}`;
+  }
 
   return (
     <div className="blog-page" style={{ paddingTop: '8rem', paddingBottom: '6rem', backgroundColor: 'var(--bg-dark)', minHeight: '100vh' }}>
@@ -76,7 +115,7 @@ const BlogPage = () => {
               }}>
                 {post.imageUrl ? (
                   <img 
-                    src={`${import.meta.env.VITE_API_URL}${post.imageUrl}`} 
+                    src={getImageUrl(post.imageUrl)} 
                     alt={post.title} 
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                   />
