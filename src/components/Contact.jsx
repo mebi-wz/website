@@ -4,15 +4,35 @@ import './Contact.css'
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState({ submitting: false, sent: false, error: null })
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    setSent(true)
-    setForm({ name: '', email: '', subject: '', message: '' })
-    setTimeout(() => setSent(false), 4000)
+    setStatus({ submitting: true, sent: false, error: null })
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/info@marsbestech.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: `New Contact from ${form.name}`,
+          ...form
+        })
+      })
+
+      const result = await response.json()
+      if (response.ok) {
+        setStatus({ submitting: false, sent: true, error: null })
+        setForm({ name: '', email: '', subject: '', message: '' })
+        setTimeout(() => setStatus(s => ({ ...s, sent: false })), 5000)
+      } else {
+        throw new Error(result.message || 'Something went wrong')
+      }
+    } catch (err) {
+      setStatus({ submitting: false, sent: false, error: err.message })
+    }
   }
 
   return (
@@ -59,11 +79,20 @@ const Contact = () => {
 
           {/* Form side */}
           <div className="glass-card contact-form-card">
-            {sent ? (
+            {status.sent ? (
               <div className="contact-success">
-                <MessageSquare size={48} color="var(--accent-primary)" />
+                <div className="success-icon-wrapper">
+                  <MessageSquare size={48} color="var(--accent-primary)" />
+                </div>
                 <h3>Message Sent!</h3>
                 <p>We'll get back to you within 24 hours.</p>
+                <button 
+                  className="btn btn-outline" 
+                  style={{ marginTop: '1.5rem' }}
+                  onClick={() => setStatus({ ...status, sent: false })}
+                >
+                  Send Another Message
+                </button>
               </div>
             ) : (
               <form className="contact-form" onSubmit={handleSubmit}>
@@ -85,8 +114,19 @@ const Contact = () => {
                   <label htmlFor="message">Message</label>
                   <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." value={form.message} onChange={handleChange} required />
                 </div>
-                <button type="submit" className="btn btn-primary contact-submit">
-                  Send Message <Send size={16} />
+                
+                {status.error && (
+                  <p className="form-error-msg" style={{ color: '#ff4d4d', marginBottom: '1rem', fontSize: '0.9rem' }}>
+                    {status.error}
+                  </p>
+                )}
+
+                <button type="submit" className="btn btn-primary contact-submit" disabled={status.submitting}>
+                  {status.submitting ? (
+                    <>Sending... <span className="loader-dots">...</span></>
+                  ) : (
+                    <>Send Message <Send size={16} /></>
+                  )}
                 </button>
               </form>
             )}
