@@ -83,7 +83,7 @@
 }
 
 [data-theme="dark"] .footer__logo-img {
-  filter: invert(1) brightness(100);
+  mix-blend-mode: screen;
 }
 
 .footer__tagline {

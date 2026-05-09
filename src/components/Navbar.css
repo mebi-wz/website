@@ -38,7 +38,7 @@
 }
 
 [data-theme="dark"] .navbar__logo-img {
-  filter: invert(1) brightness(100); /* Force the logo to appear white in dark mode */
+  mix-blend-mode: screen; /* Makes the dark background of the logo transparent */
 }
 
 .navbar__links {
