@@ -68,7 +68,7 @@ const BlogPage = () => {
     <div className="blog-page" style={{ paddingTop: '8rem', paddingBottom: '6rem', backgroundColor: 'var(--bg-dark)', minHeight: '100vh' }}>
       <div className="container">
         <div className="blog-header" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-          <div className="premium-badge" style={{ display: 'inline-block', padding: '0.5rem 1.25rem', background: 'linear-gradient(90deg, rgba(123, 176, 74, 0.1) 0%, rgba(123, 176, 74, 0.0) 100%)', borderLeft: '3px solid var(--accent-primary)', color: 'var(--accent-primary)', fontSize: '0.8rem', fontWeight: '700', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem' }}>LATEST INSIGHTS</div>
+          <div className="premium-badge" style={{ display: 'inline-block', padding: '0.5rem 1.25rem', background: 'linear-gradient(90deg, rgba(94, 158, 158, 0.1) 0%, rgba(94, 158, 158, 0.0) 100%)', borderLeft: '3px solid var(--accent-primary)', color: 'var(--accent-primary)', fontSize: '0.8rem', fontWeight: '700', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '1.5rem' }}>LATEST INSIGHTS</div>
           <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', color: 'var(--text-primary)', marginBottom: '1rem' }}>
             Our <span style={{ background: 'linear-gradient(135deg, var(--accent-primary) 0%, #a2e85e 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Blog</span>
           </h1>
@@ -80,11 +80,11 @@ const BlogPage = () => {
         <div className="blog-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '2.5rem' }}>
           {dummyPosts.map(post => (
             <div key={post.id} className="blog-card glass-card" style={{ display: 'flex', flexDirection: 'column', height: '100%', padding: '2rem', transition: 'transform 0.3s ease, box-shadow 0.3s ease', cursor: 'pointer' }}
-                onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-10px)'; e.currentTarget.style.borderColor = 'rgba(123, 176, 74, 0.3)'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-10px)'; e.currentTarget.style.borderColor = 'rgba(94, 158, 158, 0.3)'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'var(--border-color)'; }}
             >
               <div style={{ marginBottom: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.85rem', color: 'var(--accent-primary)', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.4rem 0.8rem', backgroundColor: 'rgba(123, 176, 74, 0.1)', borderRadius: '20px' }}>
+                <span style={{ fontSize: '0.85rem', color: 'var(--accent-primary)', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.4rem 0.8rem', backgroundColor: 'rgba(94, 158, 158, 0.1)', borderRadius: '20px' }}>
                   <Tag size={12} /> {post.category}
                 </span>
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{post.readTime}</span>
@@ -103,9 +103,9 @@ const BlogPage = () => {
                   <span style={{ fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.4rem' }}><User size={14}/> {post.author}</span>
                   <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem', marginTop: '0.3rem' }}><Calendar size={12}/> {post.date}</span>
                 </div>
-                <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '45px', height: '45px', borderRadius: '50%', backgroundColor: 'rgba(123, 176, 74, 0.1)', color: 'var(--accent-primary)', transition: 'all 0.3s ease' }} 
+                <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '45px', height: '45px', borderRadius: '50%', backgroundColor: 'rgba(94, 158, 158, 0.1)', color: 'var(--accent-primary)', transition: 'all 0.3s ease' }} 
                     onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'var(--accent-primary)'; e.currentTarget.style.color = '#fff'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(123, 176, 74, 0.1)'; e.currentTarget.style.color = 'var(--accent-primary)'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(94, 158, 158, 0.1)'; e.currentTarget.style.color = 'var(--accent-primary)'; }}
                 >
                   <ArrowRight size={20} />
                 </Link>

@@ -37,6 +37,10 @@
   object-fit: contain;
 }
 
+[data-theme="dark"] .navbar__logo-img {
+  filter: invert(1) brightness(100); /* Force the logo to appear white in dark mode */
+}
+
 .navbar__links {
   display: flex;
   align-items: center;

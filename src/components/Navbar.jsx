@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext'
 import { NavLink } from 'react-router-dom'
-import logo from '../assets/logo_transparent.png'
+import logoLight from '../assets/logo_transparent.png'
+import logoDark from '../assets/logo_dark.png'
 import './Navbar.css'
 
 const Navbar = () => {
@@ -28,7 +29,7 @@ const Navbar = () => {
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} id="navbar">
       <div className="navbar__container">
         <NavLink to="/" className="navbar__logo">
-          <img src={logo} alt="Marsbes Tech" className="navbar__logo-img" />
+          <img src={theme === 'dark' ? logoDark : logoLight} alt="Marsbes Tech" className="navbar__logo-img" />
         </NavLink>
 
         <ul className="navbar__links">

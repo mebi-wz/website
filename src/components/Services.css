@@ -16,7 +16,7 @@
 .services-badge {
   display: inline-block;
   padding: 0.5rem 1.25rem;
-  background: rgba(123, 176, 74, 0.1);
+  background: rgba(94, 158, 158, 0.1);
   color: var(--accent-primary);
   border-radius: 50px;
   font-size: 0.8rem;
@@ -76,9 +76,8 @@
 }
 
 .service-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 20px 50px rgba(123, 176, 74, 0.3), 0 10px 20px rgba(39, 50, 75, 0.2);
-  border-color: rgba(123, 176, 74, 0.3);
+  box-shadow: 0 20px 50px rgba(94, 158, 158, 0.3), 0 10px 20px rgba(39, 50, 75, 0.2);
+  border-color: rgba(94, 158, 158, 0.3);
 }
 
 .service-card:hover::before {
@@ -98,7 +97,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(123, 176, 74, 0.1);
+  background: rgba(94, 158, 158, 0.1);
   color: var(--accent-primary);
   border-radius: 8px;
   margin-bottom: 1.5rem;

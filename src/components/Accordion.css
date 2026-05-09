@@ -35,7 +35,7 @@
 }
 
 .accordion-item:hover {
-  border-color: rgba(123, 176, 74, 0.3);
+  border-color: rgba(94, 158, 158, 0.3);
 }
 
 .accordion-item.open {

@@ -23,7 +23,7 @@
   border: 1px solid var(--border-color);
   box-shadow: 0 20px 50px rgba(0,0,0,0.4);
   border-radius: 20px;
-  background-image: radial-gradient(circle at 100% 0%, rgba(123, 176, 74, 0.15) 0%, transparent 50%);
+  background-image: radial-gradient(circle at 100% 0%, rgba(94, 158, 158, 0.15) 0%, transparent 50%);
 }
 
 .footer__cta-content {
@@ -48,12 +48,12 @@
   white-space: nowrap;
   padding: 1rem 2.5rem;
   font-size: 1.1rem;
-  box-shadow: 0 10px 25px rgba(123, 176, 74, 0.4);
+  box-shadow: 0 10px 25px rgba(94, 158, 158, 0.4);
 }
 
 .footer__cta-btn:hover {
   transform: translateY(-4px);
-  box-shadow: 0 15px 35px rgba(123, 176, 74, 0.6);
+  box-shadow: 0 15px 35px rgba(94, 158, 158, 0.6);
 }
 
 /* Footer Main Grid */
@@ -80,6 +80,10 @@
   height: 35px;
   width: auto;
   object-fit: contain;
+}
+
+[data-theme="dark"] .footer__logo-img {
+  filter: invert(1) brightness(100);
 }
 
 .footer__tagline {
