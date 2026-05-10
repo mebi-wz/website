@@ -36,16 +36,21 @@ const fallbackPosts = [
 ]
 
 const BlogPage = () => {
-  const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [posts, setPosts] = useState(fallbackPosts) // show fallback instantly
+  const [loading, setLoading] = useState(false) // no loading spinner needed
   const [error, setError] = useState(null)
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    
+
     const fetchPosts = async () => {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 3000); // give up after 3s
+
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/posts`)
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/posts`, {
+          signal: controller.signal
+        })
         const data = await response.json()
         if (response.ok) {
           setPosts(data.length > 0 ? data : fallbackPosts)
@@ -53,8 +58,9 @@ const BlogPage = () => {
           setPosts(fallbackPosts)
         }
       } catch (err) {
-        setPosts(fallbackPosts)
+        setPosts(fallbackPosts) // silently use fallback, no error shown
       } finally {
+        clearTimeout(timeout)
         setLoading(false)
       }
     }
@@ -81,60 +87,60 @@ const BlogPage = () => {
           </p>
         </div>
 
-        <div className="blog-grid" style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', 
-          gap: '2rem' 
+        <div className="blog-grid" style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+          gap: '2rem'
         }}>
           {loading && <p style={{ color: 'var(--text-secondary)' }}>Loading posts...</p>}
           {error && <p style={{ color: '#ef4444' }}>{error}</p>}
           {!loading && !error && posts.length === 0 && <p style={{ color: 'var(--text-secondary)' }}>No posts available yet.</p>}
-          
+
           {posts.map(post => (
-            <div key={post.id} className="blog-card glass-card" style={{ 
-              display: 'flex', 
-              flexDirection: 'column', 
-              height: '100%', 
-              padding: '1.5rem', 
-              transition: 'all 0.3s ease', 
+            <div key={post.id} className="blog-card glass-card" style={{
+              display: 'flex',
+              flexDirection: 'column',
+              height: '100%',
+              padding: '1.5rem',
+              transition: 'all 0.3s ease',
               cursor: 'pointer',
               position: 'relative',
               overflow: 'hidden'
             }}
-                onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-10px)'; e.currentTarget.style.borderColor = 'var(--accent-primary)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'var(--border-color)'; }}
+              onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-10px)'; e.currentTarget.style.borderColor = 'var(--accent-primary)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'var(--border-color)'; }}
             >
               {/* Image Container with Overlay Category */}
-              <div style={{ 
-                width: '100%', 
-                height: '220px', 
-                borderRadius: '12px', 
-                overflow: 'hidden', 
+              <div style={{
+                width: '100%',
+                height: '220px',
+                borderRadius: '12px',
+                overflow: 'hidden',
                 marginBottom: '1.5rem',
-                position: 'relative' 
+                position: 'relative'
               }}>
                 {post.imageUrl ? (
-                  <img 
-                    src={getImageUrl(post.imageUrl)} 
-                    alt={post.title} 
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                  <img
+                    src={getImageUrl(post.imageUrl)}
+                    alt={post.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 ) : (
                   <div style={{ width: '100%', height: '100%', background: 'linear-gradient(45deg, #1a1c23, #2d3139)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Tag size={40} color="var(--accent-primary)" style={{ opacity: 0.2 }} />
                   </div>
                 )}
-                
+
                 {/* Overlay Category */}
-                <div style={{ 
-                  position: 'absolute', 
-                  top: '1rem', 
+                <div style={{
+                  position: 'absolute',
+                  top: '1rem',
                   left: '1rem',
-                  fontSize: '0.75rem', 
-                  color: '#fff', 
-                  fontWeight: '700', 
-                  padding: '0.4rem 0.8rem', 
-                  backgroundColor: 'var(--accent-primary)', 
+                  fontSize: '0.75rem',
+                  color: '#fff',
+                  fontWeight: '700',
+                  padding: '0.4rem 0.8rem',
+                  backgroundColor: 'var(--accent-primary)',
                   borderRadius: '6px',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
                   textTransform: 'uppercase',
@@ -143,7 +149,7 @@ const BlogPage = () => {
                   {post.category}
                 </div>
               </div>
-              
+
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
                 <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                   <Calendar size={14} /> {post.date}
@@ -152,23 +158,23 @@ const BlogPage = () => {
                   <MessageSquare size={14} /> {post.readTime}
                 </span>
               </div>
-              
-              <h3 style={{ 
-                fontFamily: 'var(--font-heading)', 
-                fontSize: '1.25rem', 
-                color: 'var(--text-primary)', 
-                marginBottom: '1rem', 
+
+              <h3 style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: '1.25rem',
+                color: 'var(--text-primary)',
+                marginBottom: '1rem',
                 lineHeight: '1.4',
                 fontWeight: '700'
               }}>
                 {post.title}
               </h3>
-              
-              <p style={{ 
-                color: 'var(--text-secondary)', 
-                fontSize: '0.9rem', 
-                lineHeight: '1.6', 
-                flexGrow: 1, 
+
+              <p style={{
+                color: 'var(--text-secondary)',
+                fontSize: '0.9rem',
+                lineHeight: '1.6',
+                flexGrow: 1,
                 marginBottom: '1.5rem',
                 display: '-webkit-box',
                 WebkitLineClamp: '3',
@@ -177,13 +183,13 @@ const BlogPage = () => {
               }}>
                 {post.excerpt}
               </p>
-              
-              <div style={{ 
-                borderTop: '1px solid var(--border-color)', 
-                paddingTop: '1.25rem', 
-                display: 'flex', 
-                justifyContent: 'space-between', 
-                alignItems: 'center' 
+
+              <div style={{
+                borderTop: '1px solid var(--border-color)',
+                paddingTop: '1.25rem',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <div style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: 'var(--accent-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '0.8rem', fontWeight: '700' }}>
@@ -191,14 +197,14 @@ const BlogPage = () => {
                   </div>
                   <span style={{ fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: '600' }}>{post.author}</span>
                 </div>
-                
-                <Link to="/contact" style={{ 
-                  color: 'var(--accent-primary)', 
-                  fontWeight: '700', 
-                  fontSize: '0.9rem', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '0.5rem' 
+
+                <Link to="/contact" style={{
+                  color: 'var(--accent-primary)',
+                  fontWeight: '700',
+                  fontSize: '0.9rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem'
                 }}>
                   Read More <ArrowRight size={16} />
                 </Link>
