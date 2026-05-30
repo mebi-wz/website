@@ -1,43 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Calendar, User, Tag, MessageSquare } from 'lucide-react'
-
-const fallbackPosts = [
-  {
-    id: 'f1',
-    title: 'AI in African Business: Beyond the Hype',
-    excerpt: 'Practical applications of Artificial Intelligence that are already generating ROI for local businesses today.',
-    category: 'Artificial Intelligence',
-    author: 'Marsbes Tech',
-    date: 'April 24, 2024',
-    readTime: '8 min read',
-    imageUrl: '/blog/ai.png'
-  },
-  {
-    id: 'f2',
-    title: 'The Future of ERPs in Ethiopian Enterprises',
-    excerpt: 'Discover how modern, cloud-based ERP systems are transforming the way businesses operate in East Africa.',
-    category: 'ERP Solutions',
-    author: 'Marsbes Tech',
-    date: 'May 1, 2024',
-    readTime: '5 min read',
-    imageUrl: '/blog/erp.png'
-  },
-  {
-    id: 'f3',
-    title: 'Scaling Modern Web Applications in 2024',
-    excerpt: 'A deep dive into the latest web technologies that are helping startups and enterprises scale their digital presence.',
-    category: 'Web Development',
-    author: 'Marsbes Tech',
-    date: 'June 10, 2024',
-    readTime: '10 min read',
-    imageUrl: '/blog/web.png'
-  }
-]
+import { ArrowRight, Calendar, Tag, MessageSquare, WifiOff, RefreshCw } from 'lucide-react'
 
 const BlogPage = () => {
-  const [posts, setPosts] = useState(fallbackPosts) // show fallback instantly
-  const [loading, setLoading] = useState(false) // no loading spinner needed
+  const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
@@ -45,7 +12,7 @@ const BlogPage = () => {
 
     const fetchPosts = async () => {
       const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 3000); // give up after 3s
+      const timeout = setTimeout(() => controller.abort(), 5000);
 
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/posts`, {
@@ -53,12 +20,16 @@ const BlogPage = () => {
         })
         const data = await response.json()
         if (response.ok) {
-          setPosts(data.length > 0 ? data : fallbackPosts)
+          setPosts(data)
         } else {
-          setPosts(fallbackPosts)
+          setError('Failed to load blog posts. Please try again later.')
         }
       } catch (err) {
-        setPosts(fallbackPosts) // silently use fallback, no error shown
+        if (err.name === 'AbortError') {
+          setError('Blog fetch timed out. The server took too long to respond.')
+        } else {
+          setError('Could not connect to the server. Please check your connection and try again.')
+        }
       } finally {
         clearTimeout(timeout)
         setLoading(false)
@@ -87,14 +58,47 @@ const BlogPage = () => {
           </p>
         </div>
 
+        {/* Loading State */}
+        {loading && (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '6rem 0', gap: '1.5rem' }}>
+            <div style={{ width: '48px', height: '48px', border: '3px solid var(--border-color)', borderTopColor: 'var(--accent-primary)', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>Fetching latest posts...</p>
+          </div>
+        )}
+
+        {/* Error State */}
+        {!loading && error && (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '5rem 2rem', gap: '1.5rem', textAlign: 'center' }}>
+            <div style={{ width: '72px', height: '72px', borderRadius: '50%', background: 'rgba(239,68,68,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <WifiOff size={32} color="#ef4444" />
+            </div>
+            <h3 style={{ color: 'var(--text-primary)', fontSize: '1.4rem', fontFamily: 'var(--font-heading)', margin: 0 }}>Blog Unavailable</h3>
+            <p style={{ color: 'var(--text-secondary)', maxWidth: '420px', lineHeight: '1.7', margin: 0 }}>{error}</p>
+            <button
+              onClick={() => window.location.reload()}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.75rem', background: 'var(--accent-primary)', color: '#fff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: '600', fontSize: '0.95rem' }}
+            >
+              <RefreshCw size={16} /> Try Again
+            </button>
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!loading && !error && posts.length === 0 && (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '5rem 2rem', gap: '1rem', textAlign: 'center' }}>
+            <div style={{ width: '72px', height: '72px', borderRadius: '50%', background: 'rgba(94,158,158,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Tag size={32} color="var(--accent-primary)" />
+            </div>
+            <h3 style={{ color: 'var(--text-primary)', fontSize: '1.3rem', fontFamily: 'var(--font-heading)', margin: 0 }}>No Posts Yet</h3>
+            <p style={{ color: 'var(--text-secondary)', margin: 0 }}>Check back soon — we're working on fresh content.</p>
+          </div>
+        )}
+
         <div className="blog-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
           gap: '2rem'
         }}>
-          {loading && <p style={{ color: 'var(--text-secondary)' }}>Loading posts...</p>}
-          {error && <p style={{ color: '#ef4444' }}>{error}</p>}
-          {!loading && !error && posts.length === 0 && <p style={{ color: 'var(--text-secondary)' }}>No posts available yet.</p>}
 
           {posts.map(post => (
             <div key={post.id} className="blog-card glass-card" style={{
