@@ -31,7 +31,7 @@ const About = () => {
         <div className="about-content">
           <div className="about-badge">WHO WE ARE</div>
           <h2 className="about-title">
-            Your Business Growth <br /> <span className="highlight-text">Through Masrbes Tech</span>
+            Your Business Growth <br /> <span className="highlight-text">Through Marsbes Tech</span>
           </h2>
           <p className="about-desc">
             We are a 100% Trusted ERP Partner dedicated to the Ethiopian market. Our goal is to simplify complex operations, connect isolated departments, and provide real-time insights that guarantee sustainable business growth.

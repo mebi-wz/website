@@ -71,7 +71,7 @@ const Contact = () => {
                 <MapPin size={20} color="var(--accent-primary)" />
                 <div>
                   <strong>Location &amp; Hours</strong>
-                  <p>Airport Road, Addis Ababa<br />Mon-Sat: 8:00am To 5:00pm</p>
+                  <p>Ayat, Addis Ababa<br />Mon-Sat: 8:00am To 5:00pm</p>
                 </div>
               </div>
             </div>
