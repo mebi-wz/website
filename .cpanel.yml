@@ -1,11 +1,7 @@
 ---
 deployment:
   tasks:
-    # Copy frontend build into the backend's public/ folder so Express serves it
-    - export BACKEND_PUBLIC=/home/marsbewk/website-backend/public
-    - mkdir -p $BACKEND_PUBLIC
-    - /bin/cp -R dist/* $BACKEND_PUBLIC
-    # Also copy to staging subdomain for preview
-    - export STAGING=/home/marsbewk/public_html/staging.marsbestech.com/
-    - mkdir -p $STAGING
-    - /bin/cp -R dist/* $STAGING
+    - export DEPLOYPATH=/home/marsbewk/public_html/staging.marsbestech.com/
+    - /bin/cp -R dist/* $DEPLOYPATH
+    - export DEPLOYPATH_MAIN=/home/marsbewk/public_html/
+    - /bin/cp -R dist/* $DEPLOYPATH_MAIN
