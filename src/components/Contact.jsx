@@ -86,8 +86,8 @@ const Contact = () => {
                 </div>
                 <h3>Message Sent!</h3>
                 <p>We'll get back to you within 24 hours.</p>
-                <button 
-                  className="btn btn-outline" 
+                <button
+                  className="btn btn-outline"
                   style={{ marginTop: '1.5rem' }}
                   onClick={() => setStatus({ ...status, sent: false })}
                 >
@@ -99,22 +99,22 @@ const Contact = () => {
                 <div className="form-row">
                   <div className="form-group">
                     <label htmlFor="name">Full Name</label>
-                    <input id="name" name="name" type="text" placeholder="John Doe" value={form.name} onChange={handleChange} required />
+                    <input id="name" name="name" type="text" placeholder="Your Name" value={form.name} onChange={handleChange} required />
                   </div>
                   <div className="form-group">
                     <label htmlFor="email">Email Address</label>
-                    <input id="email" name="email" type="email" placeholder="john@company.com" value={form.email} onChange={handleChange} required />
+                    <input id="email" name="email" type="email" placeholder="Your Email" value={form.email} onChange={handleChange} required />
                   </div>
                 </div>
                 <div className="form-group">
                   <label htmlFor="subject">Subject</label>
-                  <input id="subject" name="subject" type="text" placeholder="What's this about?" value={form.subject} onChange={handleChange} required />
+                  <input id="subject" name="subject" type="text" placeholder="Your Subject" value={form.subject} onChange={handleChange} required />
                 </div>
                 <div className="form-group">
                   <label htmlFor="message">Message</label>
                   <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." value={form.message} onChange={handleChange} required />
                 </div>
-                
+
                 {status.error && (
                   <p className="form-error-msg" style={{ color: '#ff4d4d', marginBottom: '1rem', fontSize: '0.9rem' }}>
                     {status.error}
