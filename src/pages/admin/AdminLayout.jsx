@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Outlet, useNavigate, Link, useLocation } from 'react-router-dom'
-import { LogOut, LayoutDashboard, FileText, Home } from 'lucide-react'
+import { LogOut, LayoutDashboard, FileText, Home, Mail } from 'lucide-react'
 import './Admin.css'
 
 const AdminLayout = () => {
@@ -42,6 +42,9 @@ const AdminLayout = () => {
           </Link>
           <Link to="/admin/create" className={`admin-nav-link ${location.pathname === '/admin/create' ? 'active' : ''}`}>
             <FileText size={20} /> New Post
+          </Link>
+          <Link to="/admin/messages" className={`admin-nav-link ${location.pathname === '/admin/messages' ? 'active' : ''}`}>
+            <Mail size={20} /> Messages
           </Link>
           <div className="admin-nav-divider"></div>
           <Link to="/" className="admin-nav-link">

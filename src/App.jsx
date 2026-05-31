@@ -18,6 +18,7 @@ import AdminLayout from './pages/admin/AdminLayout'
 import AdminLogin from './pages/admin/AdminLogin'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminPostEditor from './pages/admin/AdminPostEditor'
+import AdminMessages from './pages/admin/AdminMessages'
 
 function App() {
   const location = useLocation()
@@ -45,6 +46,7 @@ function App() {
               <Route path="login" element={<AdminLogin />} />
               <Route path="create" element={<AdminPostEditor />} />
               <Route path="edit/:id" element={<AdminPostEditor />} />
+              <Route path="messages" element={<AdminMessages />} />
             </Route>
           </Routes>
         </main>
