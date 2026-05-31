@@ -13,7 +13,7 @@ const Contact = () => {
     setStatus({ submitting: true, sent: false, error: null })
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/info@marsbestech.com', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
