@@ -41,7 +41,8 @@ const BlogPage = () => {
 
   const getImageUrl = (url) => {
     if (!url) return null;
-    if (url.startsWith('http') || url.startsWith('/')) return url;
+    if (url.startsWith('http')) return url;
+    // Relative paths like /uploads/... must point to the API server, not the frontend
     return `${import.meta.env.VITE_API_URL}${url}`;
   }
 
