@@ -17,6 +17,7 @@ const AdminPostEditor = () => {
   })
   
   const [imageFile, setImageFile] = useState(null)
+  const [imagePreview, setImagePreview] = useState(null)
   const [loading, setLoading] = useState(isEditing)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState(null)
@@ -47,7 +48,25 @@ const AdminPostEditor = () => {
   }
 
   const handleFileChange = (e) => {
-    setImageFile(e.target.files[0])
+    const file = e.target.files[0]
+    setImageFile(file)
+    if (file) {
+      setImagePreview(URL.createObjectURL(file))
+    } else {
+      setImagePreview(null)
+    }
+  }
+
+  // Resolve the current image URL for preview
+  const getCurrentImageUrl = () => {
+    if (imagePreview) return imagePreview
+    if (!form.imageUrl) return null
+    if (form.imageUrl.startsWith('http') || form.imageUrl.startsWith('/')) {
+      return form.imageUrl.startsWith('/')
+        ? `${import.meta.env.VITE_API_URL}${form.imageUrl}`
+        : form.imageUrl
+    }
+    return `${import.meta.env.VITE_API_URL}${form.imageUrl}`
   }
 
   const handleSubmit = async (e) => {
@@ -137,8 +156,29 @@ const AdminPostEditor = () => {
             <input type="text" name="readTime" value={form.readTime} onChange={handleChange} required />
           </div>
           <div className="form-group">
-            <label>Post Image {isEditing && form.imageUrl && "(Leave empty to keep current)"}</label>
+            <label>Post Image</label>
+
+            {/* Current / New image preview */}
+            {getCurrentImageUrl() && (
+              <div style={{ marginBottom: '0.75rem', position: 'relative', display: 'inline-block' }}>
+                <img
+                  src={getCurrentImageUrl()}
+                  alt="Post preview"
+                  style={{ width: '100%', maxWidth: '320px', height: '180px', objectFit: 'cover', borderRadius: '8px', border: '2px solid var(--border-color)' }}
+                />
+                {imagePreview && (
+                  <span style={{ position: 'absolute', top: '6px', left: '6px', background: '#22c55e', color: '#fff', fontSize: '0.7rem', fontWeight: '700', padding: '2px 8px', borderRadius: '4px' }}>NEW</span>
+                )}
+                {!imagePreview && isEditing && (
+                  <span style={{ position: 'absolute', top: '6px', left: '6px', background: 'var(--accent-primary)', color: '#fff', fontSize: '0.7rem', fontWeight: '700', padding: '2px 8px', borderRadius: '4px' }}>CURRENT</span>
+                )}
+              </div>
+            )}
+
             <input type="file" accept="image/*" onChange={handleFileChange} />
+            <small style={{ color: 'var(--text-secondary)', display: 'block', marginTop: '0.4rem' }}>
+              {isEditing && form.imageUrl ? 'Select a new image to replace the current one, or leave empty to keep it.' : 'Upload a cover image for this post.'}
+            </small>
           </div>
         </div>
 
