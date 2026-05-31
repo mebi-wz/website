@@ -2,10 +2,13 @@
   RewriteEngine On
   RewriteBase /
 
-  # Don't rewrite files or directories that exist
+  # Prevent trailing slash issues
+  RewriteRule ^(.+)/$ /$1 [L,R=301]
+
+  # If file or directory exists, serve it
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
 
-  # Redirect everything else to index.html
-  RewriteRule ^ index.html [L]
+  # Otherwise send to React
+  RewriteRule . /index.html [L]
 </IfModule>
