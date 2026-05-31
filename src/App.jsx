@@ -9,6 +9,7 @@ import TechStackPage from './pages/TechStackPage'
 import ContactPage from './pages/ContactPage'
 import ServiceDetailPage from './pages/ServiceDetailPage'
 import BlogPage from './pages/BlogPage'
+import BlogDetailPage from './pages/BlogDetailPage'
 import Footer from './components/Footer'
 import { ThemeProvider } from './context/ThemeContext'
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/services/:id" element={<ServiceDetailPage />} />
             <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:id" element={<BlogDetailPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/tech" element={<TechStackPage />} />
             <Route path="/contact" element={<ContactPage />} />

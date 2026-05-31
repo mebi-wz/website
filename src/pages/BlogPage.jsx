@@ -203,7 +203,7 @@ const BlogPage = () => {
                   <span style={{ fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: '600' }}>{post.author}</span>
                 </div>
 
-                <Link to="/contact" style={{
+                <Link to={`/blog/${post.id}`} style={{
                   color: 'var(--accent-primary)',
                   fontWeight: '700',
                   fontSize: '0.9rem',
