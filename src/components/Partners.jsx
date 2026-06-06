@@ -6,38 +6,66 @@ const partners = [
   {
     name: 'Ethio Telecom',
     category: 'Telecom & Payments',
-    description: 'Strategic integration partner for Telebirr payments, SMS notifications, and enterprise connectivity across Ethiopia.',
+    description: 'Telebirr payments, SMS notifications, and enterprise connectivity.',
     url: 'https://www.ethiotelecom.et',
     logo: '/logos/ethiotelecom.png',
     logoFallback: '📡',
-    tier: 'Local',
+    tier: 'Gold',
   },
   {
     name: 'Safaricom Ethiopia',
     category: 'Telecom & M-Pesa',
-    description: 'Partner for M-Pesa mobile money integration and enterprise communication services in the Ethiopian market.',
+    description: 'M-Pesa integration and enterprise communication services.',
     url: 'https://www.safaricom.et',
     logo: '/logos/safaricom.png',
     logoFallback: '🟢',
-    tier: 'Local',
+    tier: 'Gold',
   },
   {
     name: 'Commercial Bank of Ethiopia',
     category: 'Banking Integration',
-    description: 'Official CBE digital banking integration — enabling seamless payment processing and financial workflows inside ERP.',
+    description: 'Digital banking and payment integration services.',
     url: 'https://www.combanketh.et',
     logo: '/logos/cbe.png',
     logoFallback: '🏦',
-    tier: 'Local',
+    tier: 'Gold',
   },
   {
-    name: 'Odoo Community',
+    name: 'Odoo',
     category: 'ERP Platform',
-    description: 'Certified Odoo Community partner delivering open-source ERP implementations, custom modules, and ongoing support.',
+    description: 'Open-source ERP platform and business applications.',
     url: 'https://www.odoo.com',
     logo: '/logos/odoo.png',
     logoFallback: '🟣',
     tier: 'Gold',
+  },
+  {
+    name: 'Amazon Web Services',
+    category: 'Cloud Infrastructure',
+    description: 'Scalable hosting and cloud-native solutions.',
+    url: 'https://aws.amazon.com',
+    logo: '/logos/aws.png',
+    logoFallback: '☁️',
+    tier: 'Silver',
+  },
+  {
+    name: 'Mastercard',
+    category: 'Payment Network',
+    description: 'Global payment and financial technology services.',
+    url: 'https://www.mastercard.com',
+    logo: '/logos/mastercard.png',
+    logoFallback: '💳',
+    tier: 'Silver',
+  },
+
+  {
+    name: 'Docker',
+    category: 'DevOps Platform',
+    description: 'Containerized application deployment and management.',
+    url: 'https://www.docker.com',
+    logo: '/logos/docker.png',
+    logoFallback: '🐳',
+    tier: 'Silver',
   },
 ]
 
@@ -72,8 +100,14 @@ const Partners = () => {
           <div className="partners-marquee-track">
             {scrollRow.map((p, i) => (
               <div className="partners-marquee-item" key={i}>
-                <span className="marquee-logo">{p.logoFallback}</span>
-                <span className="marquee-name">{p.name}</span>
+                <img
+                  src={p.logo}
+                  alt={p.name}
+                  className="marquee-logo"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none'
+                  }}
+                />
               </div>
             ))}
           </div>

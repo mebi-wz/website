@@ -30,6 +30,19 @@
   align-items: center;
 }
 
+.marquee-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.partners-marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .partners-badge {
   display: inline-block;
   padding: 0.45rem 1.2rem;
@@ -89,8 +102,13 @@
 }
 
 @keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .partners-marquee-item {
