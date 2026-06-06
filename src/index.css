@@ -191,7 +191,7 @@ img {
 }
 
 section {
-  padding: var(--spacing-xl) 0;
+  padding: 5rem 0;
 }
 
 .section-title {
@@ -215,4 +215,24 @@ section {
 
 .animate-fade-in {
   animation: fadeIn 1s ease-out forwards;
+}
+
+/* Standalone page wrapper — clears fixed navbar + adds breathing room */
+.page-standalone {
+  padding-top: 7rem;   /* clears ~70px navbar with comfortable gap */
+  padding-bottom: 6rem;
+  min-height: 100vh;
+}
+
+.page-standalone > section,
+.page-standalone section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .page-standalone {
+    padding-top: 5.5rem;
+    padding-bottom: 4rem;
+  }
 }

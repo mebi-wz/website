@@ -34,11 +34,9 @@ const Contact = () => {
       setStatus({ submitting: false, sent: false, error: err.message })
     }
   }
-
   return (
     <section id="contact" className="contact-section">
       <div className="container">
-        <p className="section-label">Get In Touch</p>
         <h2 className="section-title">
           Let's <span className="gradient-text">Connect</span>
         </h2>

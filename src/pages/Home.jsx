@@ -3,8 +3,9 @@ import Hero from '../components/Hero'
 import TQDTSection from '../components/TQDTSection'
 import Services from '../components/Services'
 import TechStack from '../components/TechStack'
-import Contact from '../components/Contact'
+import Partners from '../components/Partners'
 import About from '../components/About'
+import Contact from '../components/Contact'
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <TQDTSection />
       <Services />
       <TechStack />
+      <Partners />
       <About />
       <Contact />
     </div>

@@ -88,8 +88,9 @@ const Footer = () => {
       <div className="container footer__bottom-inner">
         <p>&copy; {new Date().getFullYear()} Marsbes Tech. All rights reserved.</p>
         <ul className="footer__legal-links">
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
+          <li><Link to="/privacy">Privacy Policy</Link></li>
+          <li><Link to="/terms">Terms of Service</Link></li>
+          <li><Link to="/cookies">Cookie Policy</Link></li>
         </ul>
       </div>
     </div>

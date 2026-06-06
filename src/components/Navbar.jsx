@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Menu, X, Sun, Moon } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import logoLight from '../assets/logo_transparent.png'
 import logoDark from '../assets/logo_dark.png'
 import './Navbar.css'
@@ -10,6 +10,8 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const { theme, toggleTheme } = useTheme()
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -20,10 +22,51 @@ const Navbar = () => {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/services', label: 'Services' },
+    { href: '/partners', label: 'Partners' },
     { href: '/blog', label: 'Blog' },
     { href: '/about', label: 'About us' },
     { href: '/contact', label: 'Contact' },
   ]
+
+  // Scroll to #partners — works whether already on home or navigating to it
+  const handlePartnersClick = (e, closeMobile) => {
+    e.preventDefault()
+    if (closeMobile) closeMobile()
+    const scrollTo = () => {
+      const el = document.getElementById('partners')
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+    if (location.pathname === '/') {
+      scrollTo()
+    } else {
+      navigate('/')
+      // Wait for home page to mount, then scroll
+      setTimeout(scrollTo, 300)
+    }
+  }
+
+  const renderLink = (link, closeMenu) => {
+    if (link.anchor) {
+      return (
+        <a
+          href={link.href}
+          className="navbar__link"
+          onClick={(e) => handlePartnersClick(e, closeMenu)}
+        >
+          {link.label}
+        </a>
+      )
+    }
+    return (
+      <NavLink
+        to={link.href}
+        className="navbar__link"
+        onClick={closeMenu}
+      >
+        {link.label}
+      </NavLink>
+    )
+  }
 
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} id="navbar">
@@ -35,7 +78,7 @@ const Navbar = () => {
         <ul className="navbar__links">
           {navLinks.map(link => (
             <li key={link.href}>
-              <NavLink to={link.href} className="navbar__link">{link.label}</NavLink>
+              {renderLink(link)}
             </li>
           ))}
           <li>
@@ -71,7 +114,7 @@ const Navbar = () => {
         <ul className="navbar__mobile-menu">
           {navLinks.map(link => (
             <li key={link.href}>
-              <NavLink to={link.href} className="navbar__link" onClick={() => setMenuOpen(false)}>{link.label}</NavLink>
+              {renderLink(link, () => setMenuOpen(false))}
             </li>
           ))}
           <li>
