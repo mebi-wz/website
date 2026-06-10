@@ -1,7 +1,7 @@
 .services-section {
-  padding: 5rem 0;
+  padding: 2rem 0;
   position: relative;
-  background-color: var(--bg-primary); /* Uses standard global background */
+  background-color: var(--bg-dark);
 }
 
 .services-header {

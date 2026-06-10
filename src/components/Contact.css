@@ -1,4 +1,5 @@
 .contact-section {
+  padding: 2rem 0;
   background: var(--bg-dark);
 }
 
@@ -117,10 +118,24 @@
 }
 
 @keyframes pulse-dots {
-  0%, 20% { opacity: 0; }
-  40% { opacity: 0.5; }
-  60% { opacity: 1; }
-  80%, 100% { opacity: 0; }
+
+  0%,
+  20% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 0.5;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  80%,
+  100% {
+    opacity: 0;
+  }
 }
 
 /* Success */
@@ -134,7 +149,8 @@
 }
 
 .success-icon-wrapper {
-  background: rgba(94, 158, 158, 0.1); /* Theme accent with opacity */
+  background: rgba(94, 158, 158, 0.1);
+  /* Theme accent with opacity */
   padding: 1.5rem;
   border-radius: 50%;
   margin-bottom: 1rem;
@@ -142,8 +158,15 @@
 }
 
 @keyframes scale-in {
-  0% { transform: scale(0); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .contact-success h3 {
@@ -160,6 +183,7 @@
   .contact-grid {
     grid-template-columns: 1fr;
   }
+
   .form-row {
     grid-template-columns: 1fr;
   }

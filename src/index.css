@@ -190,9 +190,7 @@ img {
   color: var(--bg-darker);
 }
 
-section {
-  padding: 5rem 0;
-}
+/* Section padding is managed per-component to avoid double-stacking */
 
 .section-title {
   text-align: center;
