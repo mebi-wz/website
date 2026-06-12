@@ -104,7 +104,8 @@
 
 /* ---- Body ---- */
 .legal-body {
-  padding: 4rem 0 6rem;
+  padding-top: 4rem;
+  padding-bottom: 6rem;
 }
 
 .legal-content {
@@ -171,14 +172,63 @@
 
 @media (max-width: 768px) {
   .legal-hero {
-    padding: 6rem 0 3.5rem;
+    padding: 7rem 0 3rem;
+  }
+
+  .legal-hero__icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 1rem;
+  }
+
+  .legal-hero__icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .legal-badge {
+    margin-bottom: 1rem;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.9rem;
   }
 
   .legal-hero__title {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .legal-hero__subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
   }
 
   .legal-body {
-    padding: 2.5rem 0 4rem;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .legal-content {
+    gap: 2rem;
+  }
+
+  .legal-section {
+    padding-bottom: 1.5rem;
+  }
+
+  .legal-section__title {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-section__text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .legal-back-btn {
+    margin-top: 2rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
   }
 }
