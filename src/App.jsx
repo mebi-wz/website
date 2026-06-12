@@ -16,6 +16,7 @@ import CookiePolicyPage from './pages/CookiePolicyPage'
 import Footer from './components/Footer'
 import ScrollButtons from './components/ScrollButtons'
 import CookieBanner from './components/CookieBanner'
+import Chatbot from './components/Chatbot'
 import { ThemeProvider } from './context/ThemeContext'
 import { initAnalyticsFromConsent, trackPageView } from './utils/analytics'
 
@@ -74,6 +75,7 @@ function App() {
         {!isAdminRoute && <Footer />}
         {!isAdminRoute && <ScrollButtons />}
         {!isAdminRoute && <CookieBanner />}
+        {!isAdminRoute && <Chatbot />}
       </div>
     </ThemeProvider>
   )
